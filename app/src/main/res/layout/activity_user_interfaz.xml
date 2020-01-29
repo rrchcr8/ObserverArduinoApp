@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/IdBufferIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UserInterfaz">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/IdControl"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="CONTROL LED"
+        android:textSize="24sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/IdEncender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Encender Led" />
+
+    <Button
+        android:id="@+id/IdApagar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apagar LED" />
+
+    <TextView
+        android:id="@+id/IDBufferIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dato:"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/IdDesconectar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desconectar" />
+</LinearLayout>
