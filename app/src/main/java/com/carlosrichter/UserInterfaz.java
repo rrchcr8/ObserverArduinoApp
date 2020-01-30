@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
 
 public class UserInterfaz extends AppCompatActivity {
@@ -128,7 +130,7 @@ public void onResume() {
             btSocket.close();
         } catch (IOException e2){}
     }
-    MyConexionBT = new ConnectedThead(btSocket);
+    MyConexionBT = new ConnectedThread(btSocket);
     MyConexionBT.start();
         }
 
@@ -157,5 +159,51 @@ public void onResume() {
         }
     }
 
+    //crea la clase que permite crear el evento de conexion
+    private class ConnectedThread extends Thread
+    {
+        private final InputStream mmInStream;
+        private final OutputStream mmOutStream;
 
+        public ConnectedThread(BluetoothSocket socket)
+        {
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+            try{
+                tmpIn = socket.getInputStream();
+                tmpOut = socket.getOutputStream();
+            }catch (IOException e){
+
+            }
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
+        }
+
+        public void run(){
+            byte[] buffer = new byte[256];
+            int bytes;
+
+            //Se mantiene en modo escucha para determinar el ingreso de datos
+            while (true){
+                try{
+                    bytes = mmInStream.read(buffer);
+                    String readMessage = new String(buffer,0,bytes);
+                    //Envia los datos obtenidos hacia el evento via handler
+                    bluetoothIn.obtainMessage(handlerState,bytes,-1,readMessage).sendToTarget();
+                }catch (IOException e){
+                    break;
+                }
+            }
+        }
+        //Envio de trama
+        public void write(String input){
+            try{
+                mmOutStream.write(input.getBytes());
+            }catch (IOException e){
+                //si no es posible enviar los datos cierra la conexion
+                Toast.makeText(getBaseContext(), "La Conexion fallo", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
 }
