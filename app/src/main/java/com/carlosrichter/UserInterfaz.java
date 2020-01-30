@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.UUID;
 
 public class UserInterfaz extends AppCompatActivity {
@@ -56,21 +60,22 @@ public class UserInterfaz extends AppCompatActivity {
                 }
             }};
 
-
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        VerificarEstadoBT();
 
 
 
         IdEncender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyConexionBT.write("1");
             }
         });
 
         IdApagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyConexionBT.write("2");
             }
         });
 
@@ -78,8 +83,79 @@ public class UserInterfaz extends AppCompatActivity {
         IdDesconectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(btSocket!=null)
+                {
+                    try {btSocket.close();
 
+                    } catch (IOException e){
+                        Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                finish();
             }
         });
     }
+ private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
+ {
+    return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+ }
+
+@Override
+public void onResume() {
+
+    super.onResume();
+    //consigue la direccion MAC desde DEviceListActivity via Intent
+    Intent intent = getIntent();
+    address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICES_ADDRES);
+    //setea la direccion MAC
+    BluetoothDevice device = btAdapter.getRemoteDevice(address);
+
+
+
+    try
+    {
+        btSocket = createBluetoothSocket(device);
+    } catch (IOException e){
+        Toast.makeText(getBaseContext(),"la creacion del socket fallo",Toast.LENGTH_SHORT).show();
+    }
+
+    try
+    {
+        btSocket.connect();
+    } catch (IOException e){
+        try
+        {
+            btSocket.close();
+        } catch (IOException e2){}
+    }
+    MyConexionBT = new ConnectedThead(btSocket);
+    MyConexionBT.start();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            try {
+                //cuando se sale de la aplciacion esta aprte permite que no se deje  abierto el socket
+                btSocket.close();
+            } catch (IOException e){
+            }
+    }
+
+    private void VerificarEstadoBT(){
+        //Comprueba que el dispositivo tiene Bluetooth y que esta encendido
+        if (btAdapter == null){
+            Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
+        }else{
+            if (btAdapter.isEnabled()){
+                Toast.makeText(getBaseContext(), "...Bluetooth Activado...", Toast.LENGTH_SHORT).show();
+            }else{
+                //Solicita al usuario que active Bluetooth
+                Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBTIntent,1);
+            }
+        }
+    }
+
+
 }
