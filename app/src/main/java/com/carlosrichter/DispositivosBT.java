@@ -34,6 +34,7 @@ public class DispositivosBT extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
+        VerificarEstadoBT();
         //inicializa el array que contendra la lista de dispositivos bluetooth vinculados
         mPairedDevicesArrayAdapater = new ArrayAdapter<String>(this, R.layout.nombre_dispositivos);
         //Presentalosdispositivos vinculados en el ListView
@@ -83,6 +84,4 @@ public class DispositivosBT extends AppCompatActivity {
             }
         }
     }
-
-
 }
