@@ -1,8 +1,5 @@
 package com.carlosrichter;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -14,10 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
+
+//import android.annotation.SuppressLint;
 
 public class UserInterfaz extends AppCompatActivity {
 
@@ -31,13 +32,13 @@ public class UserInterfaz extends AppCompatActivity {
     private StringBuilder DataStringIN = new StringBuilder();
     private ConnectedThread MyConexionBT;
     //identificador unico de servicio - SPP UUID
-    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-800-00805F9B34FB");
+    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     //declaraciond e variable string apra la direccion MAc
     private  static String address = null;
     //----------------------------------
 
 
-    @SuppressLint("HandlerLeak")
+    //    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +72,14 @@ public class UserInterfaz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MyConexionBT.write("1");
+//                IdBufferIn.setText("gato");
             }
         });
 
         IdApagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyConexionBT.write("2");
+                MyConexionBT.write("0");
             }
         });
 
@@ -97,51 +99,51 @@ public class UserInterfaz extends AppCompatActivity {
             }
         });
     }
- private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
- {
-    return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
- }
-
-@Override
-public void onResume() {
-
-    super.onResume();
-    //consigue la direccion MAC desde DEviceListActivity via Intent
-    Intent intent = getIntent();
-    address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICES_ADDRES);
-    //setea la direccion MAC
-    BluetoothDevice device = btAdapter.getRemoteDevice(address);
-
-
-
-    try
+    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
     {
-        btSocket = createBluetoothSocket(device);
-    } catch (IOException e){
-        Toast.makeText(getBaseContext(),"la creacion del socket fallo",Toast.LENGTH_SHORT).show();
+        return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
     }
 
-    try
-    {
-        btSocket.connect();
-    } catch (IOException e){
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        //consigue la direccion MAC desde DEviceListActivity via Intent
+        Intent intent = getIntent();
+        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
+        //setea la direccion MAC
+        BluetoothDevice device = btAdapter.getRemoteDevice(address);
+
+
+
         try
         {
-            btSocket.close();
-        } catch (IOException e2){}
-    }
-    MyConexionBT = new ConnectedThread(btSocket);
-    MyConexionBT.start();
+            btSocket = createBluetoothSocket(device);
+        } catch (IOException e){
+            Toast.makeText(getBaseContext(),"la creacion del socket fallo",Toast.LENGTH_SHORT).show();
         }
 
-        @Override
-        public void onPause() {
-            super.onPause();
-            try {
-                //cuando se sale de la aplciacion esta aprte permite que no se deje  abierto el socket
+        try
+        {
+            btSocket.connect();
+        } catch (IOException e){
+            try
+            {
                 btSocket.close();
-            } catch (IOException e){
-            }
+            } catch (IOException e2){}
+        }
+        MyConexionBT = new ConnectedThread(btSocket);
+        MyConexionBT.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        try {
+            //cuando se sale de la aplciacion esta aprte permite que no se deje  abierto el socket
+            btSocket.close();
+        } catch (IOException e){
+        }
     }
 
     private void VerificarEstadoBT(){
@@ -150,7 +152,7 @@ public void onResume() {
             Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
         }else{
             if (btAdapter.isEnabled()){
-                Toast.makeText(getBaseContext(), "...Bluetooth Activado...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "...Bluetooth Activado DEÑ USER INTERFACE...", Toast.LENGTH_LONG).show();
             }else{
                 //Solicita al usuario que active Bluetooth
                 Intent enableBTIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -201,7 +203,7 @@ public void onResume() {
                 mmOutStream.write(input.getBytes());
             }catch (IOException e){
                 //si no es posible enviar los datos cierra la conexion
-                Toast.makeText(getBaseContext(), "La Conexion fallo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "La Conexion fallo PERRP", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
