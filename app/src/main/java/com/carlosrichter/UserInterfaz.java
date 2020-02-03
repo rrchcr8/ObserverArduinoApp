@@ -18,10 +18,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import observer.DeviceOne;
+
 //import android.annotation.SuppressLint;
 
 public class UserInterfaz extends AppCompatActivity {
-
+    DeviceOne perro;
     Button IdEncender, IdApagar, IdDesconectar;
     TextView IdBufferIn;
     //-------------------------------------
