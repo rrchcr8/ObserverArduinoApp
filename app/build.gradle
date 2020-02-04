@@ -26,5 +26,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation files('C:\\Users\\Usuario\\Desktop\\SmartHouseLibrary\\out\\artifacts\\SmartHouseLibrary_jar\\SmartHouseLibrary.jar')
+    implementation 'com.github.rrchcr8:SmartHouseLibrary:v1.0-beta'
+
 }
