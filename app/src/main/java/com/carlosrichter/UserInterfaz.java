@@ -109,7 +109,8 @@ public class UserInterfaz extends AppCompatActivity {
         super.onResume();
         //consigue la direccion MAC desde DEviceListActivity via Intent
         Intent intent = getIntent();
-        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
+//        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
+        address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
         //setea la direccion MAC
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
