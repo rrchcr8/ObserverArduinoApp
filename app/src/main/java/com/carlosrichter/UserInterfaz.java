@@ -1,7 +1,6 @@
 package com.carlosrichter;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
@@ -98,30 +97,30 @@ public class UserInterfaz extends AppCompatActivity {
             }
         });
     }
-    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
-    {
-        return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-    }
+//    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
+//    {
+//        return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+//    }
 
     @Override
     public void onResume() {
 
         super.onResume();
-        //consigue la direccion MAC desde DEviceListActivity via Intent
-        Intent intent = getIntent();
-//        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
-        address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
-        //setea la direccion MAC
-        BluetoothDevice device = btAdapter.getRemoteDevice(address);
-
-
-
-        try
-        {
-            btSocket = createBluetoothSocket(device);
-        } catch (IOException e){
-            Toast.makeText(getBaseContext(),"la creacion del socket fallo",Toast.LENGTH_SHORT).show();
-        }
+//        //consigue la direccion MAC desde DEviceListActivity via Intent
+//        Intent intent = getIntent();
+////        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
+//        address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
+//        //setea la direccion MAC
+//        BluetoothDevice device = btAdapter.getRemoteDevice(address);
+//
+//
+//
+//        try
+//        {
+//            btSocket = createBluetoothSocket(device);
+//        } catch (IOException e){
+//            Toast.makeText(getBaseContext(),"la creacion del socket fallo",Toast.LENGTH_SHORT).show();
+//        }
 
         try
         {
