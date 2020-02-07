@@ -16,6 +16,8 @@ public class Singleton {
     BluetoothAdapter btAdapter;
     private static Singleton INSTANCE = null;
     private String addressMAC = null;
+
+
     private ConnectedThread MyConexionBT;
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -75,6 +77,11 @@ public class Singleton {
 
     public ConnectedThread magic2() {
         MyConexionBT = new ConnectedThread(btSocket);
+        return MyConexionBT;
+    }
+
+
+    public ConnectedThread getMyConexionBT() {
         return MyConexionBT;
     }
 }
