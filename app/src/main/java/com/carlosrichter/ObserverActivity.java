@@ -34,7 +34,7 @@ public class ObserverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ObserverActivity.this, UserInterfaz.class);//<-<- PARTE A MODIFICAR >->->
-                i.putExtra(EXTRA_DEVICE_ADDRESS, textView.getText());
+//                i.putExtra(EXTRA_DEVICE_ADDRESS, textView.getText());
 //                i.("btsocket", btSocket);
                 startActivity(i);
             }

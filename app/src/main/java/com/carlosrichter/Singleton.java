@@ -46,6 +46,7 @@ public class Singleton {
     public ConnectedThread magic(){
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         BluetoothDevice device = btAdapter.getRemoteDevice(INSTANCE.addressMAC);
+
         try
         {
             btSocket = createBluetoothSocket(device);
