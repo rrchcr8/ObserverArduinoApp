@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ObserverActivity extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView textView, Indicator;
     private Button button;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
     private BluetoothSocket btSocket;
@@ -25,6 +25,7 @@ public class ObserverActivity extends AppCompatActivity {
 
         textView = (TextView)findViewById(R.id.txt_obs);
         button = (Button) findViewById(R.id.btn_obs);
+        textView = (TextView) findViewById(R.id.txt_indicator);
 
         Intent intent = getIntent();
         String address = intent.getStringExtra(EXTRA_DEVICE_ADDRESS);
