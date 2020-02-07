@@ -9,9 +9,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ObserverActivity extends AppCompatActivity {
 
     private TextView textView, Indicator;
+    private com.carlosrichter.ConnectedThread MyConexionBT;
     private Button button;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
     private BluetoothSocket btSocket;
@@ -25,7 +29,7 @@ public class ObserverActivity extends AppCompatActivity {
 
         textView = (TextView)findViewById(R.id.txt_obs);
         button = (Button) findViewById(R.id.btn_obs);
-        textView = (TextView) findViewById(R.id.txt_indicator);
+        Indicator = (TextView) findViewById(R.id.txt_indicator);
 
         Intent intent = getIntent();
         String address = intent.getStringExtra(EXTRA_DEVICE_ADDRESS);
@@ -54,6 +58,26 @@ public class ObserverActivity extends AppCompatActivity {
        String address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
         //setea la direccion MAC
         Singleton.getInstance().setAddressMAC(address);
+        TimerTask task = new TimerTask() {
+            public void run() {
+//                System.out.println("Task performed on: " + new Date() + "n" +
+//                        "Thread's name: " + Thread.currentThread().getName());
+                Singleton.getInstance().magic();
+                if(Singleton.getInstance().isFlag()){
+                    Indicator.setText("READY!!!!!!!");
+                    cancel();
+                }
+            }
+        };
+        Timer timer = new Timer("Timer");
+
+        long delay = 1000L;
+        long period = 5000L;
+        timer.schedule(task, delay, period);
+//        timer.cancel();
+
+
+
 
 
 

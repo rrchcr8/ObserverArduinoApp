@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class Singleton {
+    public boolean isFlag() {
+        return flag;
+    }
+
+    private boolean flag= false;
     BluetoothAdapter btAdapter;
     private static Singleton INSTANCE = null;
     private String addressMAC = null;
@@ -43,7 +48,8 @@ public class Singleton {
     {
         return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
     }
-    public ConnectedThread magic(){
+
+    public void magic(){
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         BluetoothDevice device = btAdapter.getRemoteDevice(INSTANCE.addressMAC);
 
@@ -57,14 +63,18 @@ public class Singleton {
         try
         {
             btSocket.connect();
+            flag=true;
         } catch (IOException e){
             try
             {
                 btSocket.close();
             } catch (IOException e2){}
         }
+//       return MyConexionBT;
+    }
+
+    public ConnectedThread magic2() {
         MyConexionBT = new ConnectedThread(btSocket);
         return MyConexionBT;
     }
-
 }
