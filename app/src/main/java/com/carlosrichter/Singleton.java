@@ -13,6 +13,11 @@ public class Singleton {
     private String addressMAC = null;
     private ConnectedThread MyConexionBT;
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    public BluetoothSocket getBtSocket() {
+        return btSocket;
+    }
+
     private BluetoothSocket btSocket = null;
      // other instance variables can be here
 

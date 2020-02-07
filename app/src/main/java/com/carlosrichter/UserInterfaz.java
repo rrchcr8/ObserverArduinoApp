@@ -69,14 +69,14 @@ public class UserInterfaz extends AppCompatActivity {
         IdDesconectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btSocket!=null)
-                {
-                    try {btSocket.close();
+//                if(btSocket!=null)
+//                {
+                    try {Singleton.getInstance().getBtSocket().close();
 
                     } catch (IOException e){
                         Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
                     }
-                }
+//                }
                 finish();
             }
         });
@@ -108,7 +108,8 @@ public class UserInterfaz extends AppCompatActivity {
         super.onPause();
         try {
             //cuando se sale de la aplciacion esta aprte permite que no se deje  abierto el socket
-            btSocket.close();
+            Singleton.getInstance().getBtSocket().close();
+            //btSocket.close();
         } catch (IOException e){
         }
     }
