@@ -7,7 +7,9 @@ import android.bluetooth.BluetoothSocket;
 import java.io.IOException;
 import java.util.UUID;
 
-public class Singleton {
+import base.Sensor;
+
+public class Singleton extends Sensor {
     public boolean isFlag() {
         return flag;
     }
@@ -16,7 +18,6 @@ public class Singleton {
     BluetoothAdapter btAdapter;
     private static Singleton INSTANCE = null;
     private String addressMAC = null;
-
 
     private ConnectedThread MyConexionBT;
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -65,6 +66,7 @@ public class Singleton {
         try
         {
             btSocket.connect();
+            notifyAllDevices(new ConectionMessage(true));
             flag=true;
         } catch (IOException e){
             try

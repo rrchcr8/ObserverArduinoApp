@@ -12,14 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ObserverActivity extends AppCompatActivity {
+import base.Device;
+import base.Message;
+
+public class ObserverActivity extends AppCompatActivity implements Device {
 
     private TextView textView, Indicator;
     private com.carlosrichter.ConnectedThread MyConexionBT;
     private Button button;
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
     private BluetoothSocket btSocket;
-
+    private boolean CONNECTION = false;
 
 
     @Override
@@ -53,6 +56,7 @@ public class ObserverActivity extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
+        Singleton.getInstance().subscribe(this);
         Intent intent = getIntent();
 //        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
        String address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
@@ -64,8 +68,8 @@ public class ObserverActivity extends AppCompatActivity {
 //                        "Thread's name: " + Thread.currentThread().getName());
                 Singleton.getInstance().magic();
 //                Singleton.getInstance().magic2();
-                if(Singleton.getInstance().isFlag()){
-                    Indicator.setText("READY!!!!!!!");
+                if(CONNECTION){
+//                    Indicator.setText("READY!!!!!!!");
                     cancel();
                 }
             }
@@ -83,5 +87,11 @@ public class ObserverActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void update(Message message) {
+       Indicator.setText("POSI 10 4!!!!");
+        CONNECTION = true;
     }
 }
