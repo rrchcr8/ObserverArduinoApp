@@ -42,8 +42,6 @@ public class ObserverActivity extends AppCompatActivity implements Device {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ObserverActivity.this, UserInterfaz.class);//<-<- PARTE A MODIFICAR >->->
-//                i.putExtra(EXTRA_DEVICE_ADDRESS, textView.getText());
-//                i.("btsocket", btSocket);
                 startActivity(i);
             }
         });
@@ -79,19 +77,12 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         long delay = 1000L;
         long period = 5000L;
         timer.schedule(task, delay, period);
-//        timer.cancel();
-
-
-
-
-
-
 
     }
 
     @Override
     public void update(Message message) {
        Indicator.setText("POSI 10 4!!!!");
-        CONNECTION = true;
+        this.CONNECTION = true;
     }
 }

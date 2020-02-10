@@ -69,38 +69,23 @@ public class UserInterfaz extends AppCompatActivity {
         IdDesconectar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(btSocket!=null)
-//                {
-                    try {Singleton.getInstance().getBtSocket().close();
+
+                try {Singleton.getInstance().getBtSocket().close();
 
                     } catch (IOException e){
                         Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
                     }
-//                }
-                finish();
+                Intent i = new Intent(UserInterfaz.this, DispositivosBT.class);//<-<- PARTE A MODIFICAR >->->
+                startActivity(i);
             }
         });
     }
-//    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException
-//    {
-//        return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
-//    }
 
     @Override
     public void onResume() {
 
         super.onResume();
-//        //consigue la direccion MAC desde DEviceListActivity via Intent
-//        Intent intent = getIntent();
-////        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
-//        address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
-//        //setea la direccion MAC
-//        BluetoothDevice device = btAdapter.getRemoteDevice(address);
-//
-//
-//
         MyConexionBT = Singleton.getInstance().magic2();
-//        MyConexionBT = Singleton.getInstance().getMyConexionBT();
         MyConexionBT.start();
     }
 
