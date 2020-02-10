@@ -63,7 +63,7 @@ public class ObserverActivity extends AppCompatActivity {
 //                System.out.println("Task performed on: " + new Date() + "n" +
 //                        "Thread's name: " + Thread.currentThread().getName());
                 Singleton.getInstance().magic();
-                Singleton.getInstance().magic2();
+//                Singleton.getInstance().magic2();
                 if(Singleton.getInstance().isFlag()){
                     Indicator.setText("READY!!!!!!!");
                     cancel();

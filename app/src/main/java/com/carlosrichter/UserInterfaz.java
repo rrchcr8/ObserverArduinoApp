@@ -99,8 +99,8 @@ public class UserInterfaz extends AppCompatActivity {
 //
 //
 //
-//        MyConexionBT = Singleton.getInstance().magic2();
-        MyConexionBT = Singleton.getInstance().getMyConexionBT();
+        MyConexionBT = Singleton.getInstance().magic2();
+//        MyConexionBT = Singleton.getInstance().getMyConexionBT();
         MyConexionBT.start();
     }
 
