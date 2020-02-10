@@ -33,6 +33,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         textView = (TextView)findViewById(R.id.txt_obs);
         button = (Button) findViewById(R.id.btn_obs);
         Indicator = (TextView) findViewById(R.id.txt_indicator);
+//        button.setEnabled(false);
 
         Intent intent = getIntent();
         String address = intent.getStringExtra(EXTRA_DEVICE_ADDRESS);
@@ -41,7 +42,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ObserverActivity.this, UserInterfaz.class);//<-<- PARTE A MODIFICAR >->->
+                Intent i = new Intent(ObserverActivity.this, UserInterfaz.class);
                 startActivity(i);
             }
         });
@@ -56,24 +57,18 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         super.onResume();
         Singleton.getInstance().subscribe(this);
         Intent intent = getIntent();
-//        address = intent.getStringExtra(DispositivosBT.EXTRA_DEVICE_ADDRESS);
        String address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
         //setea la direccion MAC
         Singleton.getInstance().setAddressMAC(address);
         TimerTask task = new TimerTask() {
             public void run() {
-//                System.out.println("Task performed on: " + new Date() + "n" +
-//                        "Thread's name: " + Thread.currentThread().getName());
                 Singleton.getInstance().magic();
-//                Singleton.getInstance().magic2();
                 if(CONNECTION){
-//                    Indicator.setText("READY!!!!!!!");
                     cancel();
                 }
             }
         };
         Timer timer = new Timer("Timer");
-
         long delay = 1000L;
         long period = 5000L;
         timer.schedule(task, delay, period);
@@ -82,7 +77,12 @@ public class ObserverActivity extends AppCompatActivity implements Device {
 
     @Override
     public void update(Message message) {
-       Indicator.setText("POSI 10 4!!!!");
-        this.CONNECTION = true;
+        if (message instanceof ConectionMessage) {
+            if (((ConectionMessage) message).isConextionStatus()){
+                Indicator.setText("POSI 10 4!!!!");
+                this.CONNECTION = true;
+            }
+        }
+
     }
 }
