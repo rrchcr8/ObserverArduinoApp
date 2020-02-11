@@ -79,7 +79,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
     public void update(Message message) {
         if (message instanceof ConectionMessage) {
             if (((ConectionMessage) message).isConextionStatus()){
-                Indicator.setText("POSI 10 4!!!!");
+                Indicator.setText("READY TO USE!!!!!!!");
                 this.CONNECTION = true;
             }
         }
