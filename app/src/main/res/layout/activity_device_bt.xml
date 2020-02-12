@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
-        android:text="dispositivos vinculado"
+        android:gravity="center_horizontal"
+        android:text="Paired devices history"
         android:textSize="30sp"
-        tools:text="dispositivos vinculados" />
+        tools:text="Paired devices history" />
 
     <ListView
         android:id="@+id/IdLista"
