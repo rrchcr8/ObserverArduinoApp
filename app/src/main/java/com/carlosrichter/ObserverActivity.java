@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,8 +43,14 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ObserverActivity.this, UserInterface.class);
-                startActivity(i);
+                if(CONNECTION){
+                    Intent i = new Intent(ObserverActivity.this, UserInterface.class);
+                    startActivity(i);
+                }
+                else {
+                    Toast.makeText(getBaseContext(), "You didn't connected yet to a bluetooth device!", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -80,6 +87,8 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         if (message instanceof ConectionMessage) {
             if (((ConectionMessage) message).isConextionStatus()){
                 Indicator.setText("READY TO USE!!!!!!!");
+                Indicator.setBackgroundColor(0xFF00FF00);
+                Indicator.setTextSize(30);
                 this.CONNECTION = true;
             }
         }
