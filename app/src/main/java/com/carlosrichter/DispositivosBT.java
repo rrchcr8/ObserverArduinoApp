@@ -45,7 +45,7 @@ public class DispositivosBT extends AppCompatActivity {
         VerificarEstadoBT();
 
         // Inicializa la array que contendra la lista de los dispositivos bluetooth vinculados
-        mPairedDevicesArrayAdapter = new ArrayAdapter(this, R.layout.nombre_dispositivos);//<-<- PARTE A MODIFICAR >->->
+        mPairedDevicesArrayAdapter = new ArrayAdapter(this, R.layout.name_devices);//<-<- PARTE A MODIFICAR >->->
         // Presenta los disposisitivos vinculados en el ListView
         IdLista = (ListView) findViewById(R.id.IdLista);
         IdLista.setAdapter(mPairedDevicesArrayAdapter);
