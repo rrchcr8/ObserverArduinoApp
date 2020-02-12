@@ -39,7 +39,7 @@ public class UserInterface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_interfaz);
+        setContentView(R.layout.activity_user_interface);
         IdEncender = (Button) findViewById(R.id.IdEncender);
         IdApagar = (Button) findViewById(R.id.IdApagar);
         IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
