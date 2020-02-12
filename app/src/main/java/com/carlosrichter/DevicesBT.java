@@ -17,11 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Set;
 
 
-public class DispositivosBT extends AppCompatActivity {
+public class DevicesBT extends AppCompatActivity {
 
     //1)
     // Depuración de LOGCAT
-    private static final String TAG = "DispositivosBT"; //<-<- PARTE A MODIFICAR >->->
+    private static final String TAG = "DevicesBT"; //<-<- PARTE A MODIFICAR >->->
     // Declaracion de ListView
     ListView IdLista;
     // String que se enviara a la actividad principal, mainactivity
@@ -81,8 +81,8 @@ public class DispositivosBT extends AppCompatActivity {
 
             // Realiza un intent para iniciar la siguiente actividad
             // mientras toma un EXTRA_DEVICE_ADDRESS que es la dirección MAC.
-//            Intent i = new Intent(DispositivosBT.this, UserInterfaz.class);//<-<- PARTE A MODIFICAR >->->
-            Intent i = new Intent(DispositivosBT.this, ObserverActivity.class);//<-<- PARTE A MODIFICAR >->->
+//            Intent i = new Intent(DevicesBT.this, UserInterface.class);//<-<- PARTE A MODIFICAR >->->
+            Intent i = new Intent(DevicesBT.this, ObserverActivity.class);//<-<- PARTE A MODIFICAR >->->
             i.putExtra(EXTRA_DEVICE_ADDRESS, address);
             startActivity(i);
         }

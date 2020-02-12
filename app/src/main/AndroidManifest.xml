@@ -13,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ObserverActivity"></activity>
-        <activity android:name=".DispositivosBT">
+        <activity android:name=".DevicesBT">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserInterfaz" />
+        <activity android:name=".UserInterface" />
     </application>
 
 </manifest>

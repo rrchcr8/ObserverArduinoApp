@@ -9,14 +9,14 @@ import java.util.UUID;
 
 import base.Sensor;
 
-public class Singleton extends Sensor {
+public class ConnectionManagerSingleton extends Sensor {
     public boolean isFlag() {
         return flag;
     }
 
     private boolean flag= false;
     BluetoothAdapter btAdapter;
-    private static Singleton INSTANCE = null;
+    private static ConnectionManagerSingleton INSTANCE = null;
     private String addressMAC = null;
 
     private ConnectedThread MyConexionBT;
@@ -29,12 +29,12 @@ public class Singleton extends Sensor {
     private BluetoothSocket btSocket = null;
      // other instance variables can be here
 
-    private Singleton() {
+    private ConnectionManagerSingleton() {
     }
 
-    public static synchronized Singleton getInstance() {
+    public static synchronized ConnectionManagerSingleton getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new Singleton();
+            INSTANCE = new ConnectionManagerSingleton();
         }
         return(INSTANCE);
     }

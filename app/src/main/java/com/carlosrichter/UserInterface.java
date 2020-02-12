@@ -17,7 +17,7 @@ import java.util.UUID;
 
 //import android.annotation.SuppressLint;
 
-public class UserInterfaz extends AppCompatActivity {
+public class UserInterface extends AppCompatActivity {
     Button IdEncender, IdApagar, IdDesconectar;
     TextView IdBufferIn;
     //-------------------------------------
@@ -70,12 +70,13 @@ public class UserInterfaz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                try {Singleton.getInstance().getBtSocket().close();
+                try {
+                    ConnectionManagerSingleton.getInstance().getBtSocket().close();
 
                     } catch (IOException e){
                         Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
                     }
-                Intent i = new Intent(UserInterfaz.this, DispositivosBT.class);//<-<- PARTE A MODIFICAR >->->
+                Intent i = new Intent(UserInterface.this, DevicesBT.class);//<-<- PARTE A MODIFICAR >->->
                 startActivity(i);
             }
         });
@@ -85,7 +86,7 @@ public class UserInterfaz extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-        MyConexionBT = Singleton.getInstance().magic2();
+        MyConexionBT = ConnectionManagerSingleton.getInstance().magic2();
         MyConexionBT.start();
     }
 
@@ -94,7 +95,7 @@ public class UserInterfaz extends AppCompatActivity {
         super.onPause();
         try {
             //cuando se sale de la aplciacion esta aprte permite que no se deje  abierto el socket
-            Singleton.getInstance().getBtSocket().close();
+            ConnectionManagerSingleton.getInstance().getBtSocket().close();
             //btSocket.close();
         } catch (IOException e){
         }

@@ -42,7 +42,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ObserverActivity.this, UserInterfaz.class);
+                Intent i = new Intent(ObserverActivity.this, UserInterface.class);
                 startActivity(i);
             }
         });
@@ -55,14 +55,14 @@ public class ObserverActivity extends AppCompatActivity implements Device {
     public void onResume() {
 
         super.onResume();
-        Singleton.getInstance().subscribe(this);
+        ConnectionManagerSingleton.getInstance().subscribe(this);
         Intent intent = getIntent();
        String address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
         //setea la direccion MAC
-        Singleton.getInstance().setAddressMAC(address);
+        ConnectionManagerSingleton.getInstance().setAddressMAC(address);
         TimerTask task = new TimerTask() {
             public void run() {
-                Singleton.getInstance().magic();
+                ConnectionManagerSingleton.getInstance().magic();
                 if(CONNECTION){
                     cancel();
                 }
