@@ -22,5 +22,8 @@
         android:id="@+id/txt_indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical"
+        android:layout_marginTop="100sp"
+        android:gravity="center|center_horizontal"
         android:text="NOT READY" />
 </LinearLayout>

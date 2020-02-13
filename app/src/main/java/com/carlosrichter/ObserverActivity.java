@@ -40,6 +40,10 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         String address = intent.getStringExtra(EXTRA_DEVICE_ADDRESS);
         textView.setText(address);
 
+        Indicator.setBackgroundColor(0xffff0000);
+        Indicator.setTextSize(30);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +75,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
             public void run() {
                 ConnectionManagerSingleton.getInstance().magic();
                 if(CONNECTION){
+
                     cancel();
                 }
             }
@@ -87,9 +92,10 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         if (message instanceof ConectionMessage) {
             if (((ConectionMessage) message).isConextionStatus()){
                 Indicator.setText("READY TO USE!!!!!!!");
-                Indicator.setBackgroundColor(0xFF00FF00);
-                Indicator.setTextSize(30);
                 this.CONNECTION = true;
+                Indicator.setBackgroundColor(0xFF00FF00);
+
+
             }
         }
 

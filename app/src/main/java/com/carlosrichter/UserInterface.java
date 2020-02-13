@@ -43,7 +43,7 @@ public class UserInterface extends AppCompatActivity {
         IdEncender = (Button) findViewById(R.id.IdEncender);
         IdApagar = (Button) findViewById(R.id.IdApagar);
         IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
-        IdBufferIn = (TextView) findViewById(R.id.IDBufferIn);
+        IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
 
 
         //VerificarEstadoBT();
