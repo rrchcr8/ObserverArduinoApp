@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,54 +39,54 @@ public class UserInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_interface);
-        IdEncender = (Button) findViewById(R.id.IdEncender);
-        IdApagar = (Button) findViewById(R.id.IdApagar);
-        IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
-        IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
+//        IdEncender = (Button) findViewById(R.id.IdEncender);
+//        IdApagar = (Button) findViewById(R.id.IdApagar);
+//        IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
+//        IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
 
 
         //VerificarEstadoBT();
 
 
 
-        IdEncender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyConexionBT.write("1");
-//                IdBufferIn.setText("gato");
-            }
-        });
-
-        IdApagar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyConexionBT.write("0");
-            }
-        });
-
-
-        IdDesconectar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                try {
-                    ConnectionManagerSingleton.getInstance().getBtSocket().close();
-
-                    } catch (IOException e){
-                        Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
-                    }
-                Intent i = new Intent(UserInterface.this, DevicesBT.class);//<-<- PARTE A MODIFICAR >->->
-                startActivity(i);
-            }
-        });
+//        IdEncender.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MyConexionBT.write("1");
+////                IdBufferIn.setText("gato");
+//            }
+//        });
+//
+//        IdApagar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MyConexionBT.write("0");
+//            }
+//        });
+//
+//
+//        IdDesconectar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                try {
+//                    ConnectionManagerSingleton.getInstance().getBtSocket().close();
+//
+//                    } catch (IOException e){
+//                        Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
+//                    }
+//                Intent i = new Intent(UserInterface.this, DevicesBT.class);//<-<- PARTE A MODIFICAR >->->
+//                startActivity(i);
+//            }
+//        });
     }
 
     @Override
     public void onResume() {
 
         super.onResume();
-        MyConexionBT = ConnectionManagerSingleton.getInstance().magic2();
-        MyConexionBT.start();
+//        MyConexionBT = ConnectionManagerSingleton.getInstance().magic2();
+//        MyConexionBT.start();
     }
 
     @Override

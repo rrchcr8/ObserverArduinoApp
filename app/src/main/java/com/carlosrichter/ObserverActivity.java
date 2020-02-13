@@ -47,13 +47,13 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(CONNECTION){
+//                if(CONNECTION){
                     Intent i = new Intent(ObserverActivity.this, UserInterface.class);
                     startActivity(i);
-                }
-                else {
+//                }
+//                else {
                     Toast.makeText(getBaseContext(), "You didn't connected yet to a bluetooth device!", Toast.LENGTH_LONG).show();
-                }
+//                }
 
             }
         });
