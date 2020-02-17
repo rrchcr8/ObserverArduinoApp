@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,12 +13,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 //import android.annotation.SuppressLint;
 
 public class UserInterface extends AppCompatActivity {
-    Button IdEncender, IdApagar, IdDesconectar;
+    private Map<String,Integer> servoAngleValues = new HashMap<String, Integer>();
+
+    Button IdEncender, IdApagar, IdDesconectar, btn_A_UP, btn_A_DOWN;
     TextView IdBufferIn;
     //-------------------------------------
     Handler bluetoothIn;
@@ -43,10 +48,38 @@ public class UserInterface extends AppCompatActivity {
 //        IdApagar = (Button) findViewById(R.id.IdApagar);
 //        IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
 //        IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
-
-
+            btn_A_UP = (Button)findViewById(R.id.btn_A_UP);
+            btn_A_DOWN = (Button)findViewById(R.id.btn_A_DOWN);
+        servoAngleValues.put("A_V",0 );
+        servoAngleValues.put("A_H",0 );
+        servoAngleValues.put("B_V",0 );
+        servoAngleValues.put("B_H",0 );
+        servoAngleValues.put("C_H",0 );
+        servoAngleValues.put("C_V",0 );
+        servoAngleValues.put("D_V",0 );
+        servoAngleValues.put("D_H",0 );
         //VerificarEstadoBT();
+        btn_A_UP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("A_H")<90){
+                MyConexionBT.write("1");
+                servoAngleValues.put("A_H",servoAngleValues.get("A_H")+45);
+                }
+//                IdBufferIn.setText("gato");
+            }
+        });
 
+        btn_A_DOWN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("A_H")>0){
+                    MyConexionBT.write("0");
+                    servoAngleValues.put("A_H",servoAngleValues.get("A_H")-45);
+                }
+//                IdBufferIn.setText("gato");
+            }
+        });
 
 
 //        IdEncender.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +118,8 @@ public class UserInterface extends AppCompatActivity {
     public void onResume() {
 
         super.onResume();
-//        MyConexionBT = ConnectionManagerSingleton.getInstance().magic2();
-//        MyConexionBT.start();
+        MyConexionBT = ConnectionManagerSingleton.getInstance().magic2();
+        MyConexionBT.start();
     }
 
     @Override
