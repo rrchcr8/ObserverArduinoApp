@@ -1,0 +1,110 @@
+#include <Servo.h>
+
+Servo motorA;
+Servo motorB;
+Servo motorC;
+Servo motorD;
+
+char letra='\0';
+bool estado=true;
+
+
+void setup()
+{
+    motorA.attach(11);
+    motorB.attach(10);
+    motorC.attach(9);
+    motorD.attach(8);
+    pinMode(13, OUTPUT);
+    digitalWrite(13, LOW);
+
+    Serial.begin(9600);
+    Serial.println("MODULO CONECTADO");
+    Serial.print("#");
+    motorA.write(0);
+    motorB.write(0);
+    motorC.write(0);
+    motorD.write(0);
+
+}
+
+void loop()
+{
+    if (Serial.available())
+    {
+        char VarChar;
+
+        VarChar = Serial.read();
+///MOTOR A
+        if(VarChar == '1')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorA.write(45);
+        delay(100);
+
+        }
+        if(VarChar == '0')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorA.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR B
+        if(VarChar == '3')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorB.write(45);
+        delay(100);
+
+        }
+        if(VarChar == '2')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorB.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR C
+        if(VarChar == '5')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorC.write(45);
+        delay(100);
+
+        }
+        if(VarChar == '4')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorC.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR D
+        if(VarChar == '7')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorD.write(45);
+        delay(100);
+
+        }
+        if(VarChar == '6')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorD.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+
+
+
+    }
+}
