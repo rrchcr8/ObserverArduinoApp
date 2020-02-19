@@ -24,6 +24,7 @@ public class UserInterface extends AppCompatActivity {
 
     Button IdEncender, IdApagar, IdDesconectar;
     Button btn_A_LEFT, btn_A_RIGHT, btn_B_LEFT, btn_B_RIGHT, btn_C_LEFT, btn_C_RIGHT,btn_D_LEFT, btn_D_RIGHT;
+    Button btn_A_UP, btn_A_DOWN, btn_B_UP, btn_B_DOWN, btn_C_UP, btn_C_DOWN,btn_D_UP, btn_D_DOWN;
     TextView IdBufferIn;
     //-------------------------------------
     Handler bluetoothIn;
@@ -57,6 +58,14 @@ public class UserInterface extends AppCompatActivity {
             btn_C_RIGHT = (Button)findViewById(R.id.btn_C_RIGHT);
             btn_D_LEFT = (Button)findViewById(R.id.btn_D_LEFT);
             btn_D_RIGHT = (Button)findViewById(R.id.btn_D_RIGHT);
+            btn_A_UP = (Button)findViewById(R.id.btn_A_UP);
+            btn_A_DOWN = (Button)findViewById(R.id.btn_A_DOWN);
+            btn_B_UP = (Button)findViewById(R.id.btn_B_UP);
+            btn_B_DOWN = (Button)findViewById(R.id.btn_B_DOWN);
+            btn_C_UP = (Button)findViewById(R.id.btn_C_UP);
+            btn_C_DOWN = (Button)findViewById(R.id.btn_C_DOWN);
+            btn_D_UP = (Button)findViewById(R.id.btn_D_UP);
+            btn_D_DOWN = (Button)findViewById(R.id.btn_D_DOWN);
 
         servoAngleValues.put("A_V",0 );
         servoAngleValues.put("A_H",0 );
@@ -147,6 +156,90 @@ public class UserInterface extends AppCompatActivity {
                 }
             }
         });
+
+        btn_A_UP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("A_V")<90){
+                    MyConexionBT.write("a");
+                    servoAngleValues.put("A_V",servoAngleValues.get("A_V")+45);
+                }
+            }
+        });
+
+        btn_A_DOWN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("A_V")>0){
+                    MyConexionBT.write("b");
+                    servoAngleValues.put("A_V",servoAngleValues.get("A_V")-45);
+                }
+            }
+        });
+
+//
+        btn_B_UP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("B_V")<90){
+                    MyConexionBT.write("c");
+                    servoAngleValues.put("B_V",servoAngleValues.get("B_V")+45);
+                }
+            }
+        });
+
+        btn_B_DOWN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("B_V")>0){
+                    MyConexionBT.write("d");
+                    servoAngleValues.put("B_V",servoAngleValues.get("B_V")-45);
+                }
+            }
+        });
+
+
+        btn_C_UP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("C_V")<90){
+                    MyConexionBT.write("e");
+                    servoAngleValues.put("C_V",servoAngleValues.get("C_V")+45);
+                }
+            }
+        });
+
+        btn_C_DOWN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("C_V")>0){
+                    MyConexionBT.write("f");
+                    servoAngleValues.put("C_V",servoAngleValues.get("C_V")-45);
+                }
+            }
+        });
+
+        btn_D_UP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("D_V")<90){
+                    MyConexionBT.write("g");
+                    servoAngleValues.put("D_V",servoAngleValues.get("D_V")+45);
+                }
+            }
+        });
+
+        btn_D_DOWN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(servoAngleValues.get("D_V")>0){
+                    MyConexionBT.write("h");
+                    servoAngleValues.put("D_V",servoAngleValues.get("D_V")-45);
+                }
+            }
+        });
+
+
 
 //        IdEncender.setOnClickListener(new View.OnClickListener() {
 //            @Override
