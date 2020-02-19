@@ -1,9 +1,13 @@
 #include <Servo.h>
 
 Servo motorA;
+Servo motorAV;
 Servo motorB;
+Servo motorBV;
 Servo motorC;
+Servo motorCV;
 Servo motorD;
+Servo motorDV;
 
 char letra='\0';
 bool estado=true;
@@ -15,6 +19,11 @@ void setup()
     motorB.attach(10);
     motorC.attach(9);
     motorD.attach(8);
+    motorAV.attach(7);
+    motorBV.attach(6);
+    motorCV.attach(5);
+    motorDV.attach(4);
+
     pinMode(13, OUTPUT);
     digitalWrite(13, LOW);
 
@@ -25,7 +34,10 @@ void setup()
     motorB.write(0);
     motorC.write(0);
     motorD.write(0);
-
+    motorAV.write(0);
+    motorBV.write(0);
+    motorCV.write(0);
+    motorDV.write(0);
 }
 
 void loop()
@@ -100,6 +112,75 @@ void loop()
         digitalWrite(13, LOW);
         delay(100);
         motorD.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR A-VERTICAL
+        if(VarChar == 'a')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorAV.write(45);
+        delay(100);
+
+        }
+        if(VarChar == 'b')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorAV.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+
+///MOTOR B-VERTICAL
+        if(VarChar == 'c')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorBV.write(45);
+        delay(100);
+
+        }
+        if(VarChar == 'd')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorBV.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR C-VERTICAL
+        if(VarChar == 'e')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorCV.write(45);
+        delay(100);
+
+        }
+        if(VarChar == 'f')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorCV.write(-45);
+        delay(500);
+        Serial.print("LED APAGADO#");
+        }
+///MOTOR D-VERTICAL
+        if(VarChar == 'g')
+        {
+        digitalWrite(13, HIGH);
+        delay(100);
+        motorDV.write(45);
+        delay(100);
+
+        }
+        if(VarChar == 'h')
+        {
+        digitalWrite(13, LOW);
+        delay(100);
+        motorDV.write(-45);
         delay(500);
         Serial.print("LED APAGADO#");
         }
