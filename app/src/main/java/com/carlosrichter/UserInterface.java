@@ -48,7 +48,7 @@ public class UserInterface extends AppCompatActivity {
         setContentView(R.layout.activity_user_interface);
 //        IdEncender = (Button) findViewById(R.id.IdEncender);
 //        IdApagar = (Button) findViewById(R.id.IdApagar);
-//        IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
+            IdDesconectar = (Button) findViewById(R.id.IdDesconectar);
 //        IdBufferIn = (TextView) findViewById(R.id.IdBufferIn);
             btn_A_LEFT = (Button)findViewById(R.id.btn_A_LEFT);
             btn_A_RIGHT = (Button)findViewById(R.id.btn_A_RIGHT);
@@ -257,20 +257,20 @@ public class UserInterface extends AppCompatActivity {
 //        });
 //
 //
-//        IdDesconectar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                try {
-//                    ConnectionManagerSingleton.getInstance().getBtSocket().close();
-//
-//                    } catch (IOException e){
-//                        Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
-//                    }
-//                Intent i = new Intent(UserInterface.this, DevicesBT.class);//<-<- PARTE A MODIFICAR >->->
-//                startActivity(i);
-//            }
-//        });
+        IdDesconectar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    ConnectionManagerSingleton.getInstance().getBtSocket().close();
+
+                    } catch (IOException e){
+                        Toast.makeText(getBaseContext(),"Error",Toast.LENGTH_SHORT).show();
+                    }
+                Intent i = new Intent(UserInterface.this, DevicesBT.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

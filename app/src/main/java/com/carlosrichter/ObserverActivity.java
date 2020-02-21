@@ -66,6 +66,8 @@ public class ObserverActivity extends AppCompatActivity implements Device {
     public void onResume() {
 
         super.onResume();
+
+
         ConnectionManagerSingleton.getInstance().subscribe(this);
         Intent intent = getIntent();
        String address = intent.getStringExtra(ObserverActivity.EXTRA_DEVICE_ADDRESS);
@@ -85,6 +87,8 @@ public class ObserverActivity extends AppCompatActivity implements Device {
         long period = 5000L;
         timer.schedule(task, delay, period);
 
+        Indicator.setBackgroundColor(0xffff0000);
+        Indicator.setTextSize(30);
     }
 
     @Override
