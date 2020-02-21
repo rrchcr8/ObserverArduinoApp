@@ -52,7 +52,7 @@ public class ObserverActivity extends AppCompatActivity implements Device {
                     startActivity(i);
                 }
                 else {
-                    Toast.makeText(getBaseContext(), "You didn't connected yet to a bluetooth device!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "You haven't connect yet to a bluetooth device!", Toast.LENGTH_LONG).show();
                 }
 
             }
